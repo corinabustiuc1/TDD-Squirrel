@@ -15,18 +15,12 @@ namespace SnakesAndLAddersTests
             Assert.Pass();
         }
 
-        [Test]
-        public void Move_Should_Return_1()
+        [TestCase(0,1,1)]
+        [TestCase(0,3,3)]
+        public void Move_Should_Return_ExpectedField(int position, int movement, int expected)
         {
-            var result = Move(0, 1);
-            result.Should().Be(1);
-        }
-
-        [Test]
-        public void Move_Should_Return_3_ForMovement3()
-        {
-            var result = Move(0, 3);
-            result.Should().Be(3);
+            var result = Move(position, movement);
+            result.Should().Be(expected);
         }
 
         public int Move(int position, int movement)
