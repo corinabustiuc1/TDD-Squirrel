@@ -24,7 +24,7 @@ namespace SnakesAndLAddersTests
 
         public int Move(int position, int movement)
         {
-            return 0;
+            return 1;
         }
 
     }
