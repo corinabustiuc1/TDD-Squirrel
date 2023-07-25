@@ -22,9 +22,16 @@ namespace SnakesAndLAddersTests
             result.Should().Be(1);
         }
 
+        [Test]
+        public void Move_Should_Return_3_ForMovement3()
+        {
+            var result = Move(0, 3);
+            result.Should().Be(3);
+        }
+
         public int Move(int position, int movement)
         {
-            return 1;
+            return position + movement;
         }
 
     }
