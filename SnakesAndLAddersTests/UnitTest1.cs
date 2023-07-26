@@ -74,9 +74,12 @@ namespace SnakesAndLAddersTests
             result.Should().BeInRange(1, 6);
         }
 
-        private int ThrowDieAndMove(int i)
-        {
-            return 0;
+        private int ThrowDieAndMove(int position)
+        { 
+            var random = ThrowDie();
+            var newPosition = Move(position, random);
+
+            return newPosition;
         }
     }
 }
