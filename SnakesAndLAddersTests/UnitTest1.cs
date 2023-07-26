@@ -33,8 +33,17 @@ namespace SnakesAndLAddersTests
         }
 
 
+        [Test]
+        public void ThrowDie_Should_Return_IntInRange1To6()
+        {
+            var result = ThrowDie();
+            result.Should().BeOfType(typeof(int));
+            result.Should().BeInRange(1, 6);
+        }
 
-
-
+        private int ThrowDie()
+        {
+            return 1;
+        }
     }
 }
