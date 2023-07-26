@@ -66,5 +66,17 @@ namespace SnakesAndLAddersTests
             var result = random.Next(1,7);
             return result;
         }
+
+        [Test]
+        public void Test_ThrowDieAndMove()
+        {
+            var result = ThrowDieAndMove(0);
+            result.Should().BeInRange(1, 6);
+        }
+
+        private int ThrowDieAndMove(int i)
+        {
+            return 0;
+        }
     }
 }
