@@ -4,7 +4,7 @@ using FakeItEasy;
 
 namespace SnakesAndLAddersTests
 {
-    public class Tests
+    public class PieceMoverTests
     {
         private PieceMover _sut; // System Under Test
         private IDiceRoller _diceRoller;
@@ -30,26 +30,32 @@ namespace SnakesAndLAddersTests
             var result = PieceMover.Move(position, movement);
             result.Should().Be(expected);
         }
-
-
+        
         [Test]
-        public void RollDie_Should_Return_IntInRange1To6()
+        public void RollDieAndMove_Should_Return_4()
         {
-            var diceRoller = new DiceRoller();
-            var result = diceRoller.RollDie();
-            result.Should().BeOfType(typeof(int));
-            result.Should().BeInRange(1, 6);
-
+            A.CallTo(() => _diceRoller.RollDie()).Returns(4);
+            var result = _sut.RollDieAndMove(0);
+            result.Should().Be(4);
         }
+    }
 
+    public class DiceRollerTests
+    {
+        private IDiceRoller _sut;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _sut = new DiceRoller();
+        }
         [Test]
         public void RollDie_Should_Return_AllIntegersBetween1And6()
         {
-            var diceRoller = new DiceRoller();
             var results = new List<int>();
             for (var i = 0; i < 100; i++)
             {
-                var result = diceRoller.RollDie();
+                var result = _sut.RollDie();
                 results.Add(result);
             }
 
@@ -61,13 +67,13 @@ namespace SnakesAndLAddersTests
             results.Should().Contain(6);
         }
 
-
         [Test]
-        public void RollDieAndMove_Should_Return_4()
+        public void RollDie_Should_Return_IntInRange1To6()
         {
-            A.CallTo(() => _diceRoller.RollDie()).Returns(4);
-            var result = _sut.RollDieAndMove(0);
-            result.Should().Be(4);
+            var result = _sut.RollDie();
+            result.Should().BeOfType(typeof(int));
+            result.Should().BeInRange(1, 6);
+
         }
     }
 }
