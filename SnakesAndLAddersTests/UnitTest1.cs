@@ -68,7 +68,7 @@ namespace SnakesAndLAddersTests
         }
 
         [Test]
-        public void Test_ThrowDieAndMove()
+        public void ThrowDieAndMove_Should_Return_RangeBetween1And6()
         {
             var result = ThrowDieAndMove(0);
             result.Should().BeInRange(1, 6);
