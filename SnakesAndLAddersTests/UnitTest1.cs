@@ -1,4 +1,5 @@
 using FluentAssertions;
+using SnakesAndLadders;
 
 namespace SnakesAndLAddersTests
 {
@@ -23,32 +24,27 @@ namespace SnakesAndLAddersTests
         [TestCase(14,3,17)]
         public void Move_Should_Return_ExpectedField(int position, int movement, int expected)
         {
-            var result = Move(position, movement);
+            var result = PieceMover.Move(position, movement);
             result.Should().Be(expected);
-        }
-
-        public static int Move(int position, int movement)
-        {
-            return position + movement;
         }
 
 
         [Test]
-        public void ThrowDie_Should_Return_IntInRange1To6()
+        public void RollDie_Should_Return_IntInRange1To6()
         {
-            var result = ThrowDie();
+            var result = PieceMover.RollDie();
             result.Should().BeOfType(typeof(int));
             result.Should().BeInRange(1, 6);
 
         }
 
         [Test]
-        public void ThrowDie_Should_Return_AllIntegersBetween1And6()
+        public void RollDie_Should_Return_AllIntegersBetween1And6()
         {
             var results = new List<int>();
             for (var i = 0; i < 100; i++)
             {
-                var result = ThrowDie();
+                var result = PieceMover.RollDie();
                 results.Add(result);
             }
 
@@ -60,26 +56,11 @@ namespace SnakesAndLAddersTests
             results.Should().Contain(6);
         }
 
-        private int ThrowDie()
-        {
-            var random  = new Random();
-            var result = random.Next(1,7);
-            return result;
-        }
-
         [Test]
-        public void ThrowDieAndMove_Should_Return_RangeBetween1And6()
+        public void RollDieAndMove_Should_Return_RangeBetween1And6()
         {
-            var result = ThrowDieAndMove(0);
+            var result = PieceMover.RollDieAndMove(0);
             result.Should().BeInRange(1, 6);
-        }
-
-        private int ThrowDieAndMove(int position)
-        { 
-            var random = ThrowDie();
-            var newPosition = Move(position, random);
-
-            return newPosition;
         }
     }
 }
