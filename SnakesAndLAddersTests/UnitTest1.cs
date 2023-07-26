@@ -50,7 +50,7 @@ namespace SnakesAndLAddersTests
             {
                 var result = ThrowDie();
                 results.Add(result);
-        }
+            }
 
             results.Should().Contain(1);
             results.Should().Contain(2);
@@ -62,7 +62,9 @@ namespace SnakesAndLAddersTests
 
         private int ThrowDie()
         {
-            return 1;
+            var random  = new Random();
+            var result = random.Next(1,7);
+            return result;
         }
     }
 }
