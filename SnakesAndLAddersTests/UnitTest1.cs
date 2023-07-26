@@ -39,6 +39,25 @@ namespace SnakesAndLAddersTests
             var result = ThrowDie();
             result.Should().BeOfType(typeof(int));
             result.Should().BeInRange(1, 6);
+
+        }
+
+        [Test]
+        public void ThrowDie_Should_Return_AllIntegersBetween1And6()
+        {
+            var results = new List<int>();
+            for (var i = 0; i < 100; i++)
+            {
+                var result = ThrowDie();
+                results.Add(result);
+        }
+
+            results.Should().Contain(1);
+            results.Should().Contain(2);
+            results.Should().Contain(3);
+            results.Should().Contain(4);
+            results.Should().Contain(5);
+            results.Should().Contain(6);
         }
 
         private int ThrowDie()
