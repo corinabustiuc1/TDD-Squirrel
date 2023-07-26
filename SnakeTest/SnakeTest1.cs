@@ -52,7 +52,7 @@ namespace SnakeTest
             result.Should().BeInRange(1,6);
         }
 
-        private int ThrowDice()
+        private static int ThrowDice()
         {
             var random  = new Random();
             var result = random.Next(1,6);
@@ -60,18 +60,20 @@ namespace SnakeTest
         }
         //have a method that calls ThrowDice() and Move() one after the other
         [Test]
-        public void Test_ThrowDiceAndMove() 
+        public void ThrowDiceAndMove_should_Return_RangeBetween1and6() 
         {
             var result = ThrowDiceAndMove(0);
             result.Should().BeInRange(1,6);
         }
-        private int ThrowDiceAndMove(int pos)
+        private static int ThrowDiceAndMove(int pos)
         {
            var rand = ThrowDice();
            var result = Move(pos,rand);
 
            return result;
         }
+
+      
 
     }
 }
